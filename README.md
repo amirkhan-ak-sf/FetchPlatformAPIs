@@ -55,7 +55,7 @@ The fetchToken function uses the following syntax:
 
 **returns** the value of the token into the cell.
 
-### Build a Credentials Sheets
+### Build a Credentials Sheet
 Recommended setup for googlesheet is to create a sheet with all credentials and use the formula in this sheet, which could be named as **Credentials** for instance. 
 
 ![image](https://user-images.githubusercontent.com/86777111/137480007-88250fe1-5c01-411e-80a7-5394c707ac13.png)
@@ -78,7 +78,7 @@ The fetchJson function uses the following syntax:
 
 **xpath** represents the node which should be extracted into the cell where the formula is used. 
 
-### Build a User Information Sheets
+### Build a User Information Sheet
 Lets create a sheet, where we extract the **User Information** from Anypoint platform and store the following data into the sheet:
 - Id
 - Firstname
@@ -146,7 +146,7 @@ Also iferror() function will make sure, errors are handled properly. As a result
 
 Important on this sheet is the organizatonId, which will be referenced in some of the subsequent requests in other sheets. 
 
-### Build an Environments Sheets
+### Build an Environments Sheet
 Lets create a sheet, where we extract the **Environment** from Anypoint platform and store the following data into the sheet:
 - Id
 - Name
@@ -155,7 +155,7 @@ Lets create a sheet, where we extract the **Environment** from Anypoint platform
 - Type
 - Client-Id
 
-In order to retrieve the User Information, we need to access the platform API resource "https://anypoint.mulesoft.com/apimanager/xapi/v1/organizations/{organizationId}/environments" and this will return the following data structure: 
+In order to retrieve the Environments, we need to access the platform API resource "https://anypoint.mulesoft.com/apimanager/xapi/v1/organizations/{organizationId}/environments" and this will return the following data structure: 
 
       {
           "environments": [
@@ -191,23 +191,23 @@ Also iferror() function will make sure, errors are handled properly.
 For the remaining attributes, the following formula is used. 
 - Name is retrieved with 
 
-        =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2, "environments/" & A2 & "/name"), "")
+        =iferror(fetchJSON(Credentials!A$2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B$4 & "/environments", Credentials!D$2, "environments/" & A2 & "/name"), "")
         
 - organizationId is retrieved with 
 
-        =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/organizationId"),"")
+        =iferror(fetchJSON(Credentials!A$2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B$4 & "/environments", Credentials!D$2,  "environments/" & A2 & "/organizationId"),"")
         
 - Production is retrieved with 
 
-        =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/isProduction"),"")
+        =iferror(fetchJSON(Credentials!A$2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B$4 & "/environments", Credentials!D$2,  "environments/" & A2 & "/isProduction"),"")
       
 - Type is retrieved with 
 
-        =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/type"),"")
+        =iferror(fetchJSON(Credentials!A$2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B$4 & "/environments", Credentials!D$2,  "environments/" & A2 & "/type"),"")
         
 - Client-Id is retrieved with 
 
-        =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/clientId"),"")
+        =iferror(fetchJSON(Credentials!A$2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B$4 & "/environments", Credentials!D$2,  "environments/" & A2 & "/clientId"),"")
         
 
 As a result the following sheet is automatically prepared:
@@ -215,4 +215,151 @@ As a result the following sheet is automatically prepared:
 ![image](https://user-images.githubusercontent.com/86777111/137485556-31386ea5-a8a8-42e4-90b2-507928dd40c9.png)
 
 
+### Build an Design Center Projects Sheet
+Lets create a sheet, where we extract the **Design Center Projects** from Anypoint platform and store the following data into the sheet:
+- Id
+- Name
+- Type
+- organizationId
+- createdBy	
+- createdDate	
+- lastUpdatedDate
 
+In order to retrieve the Design Center Projects, we need to access the platform API resource "https://anypoint.mulesoft.com/designcenter/api/v1/organizations/{{organization_id}}/projects" and this will return the following data structure: 
+
+        [
+            {
+                "vcsStorageType": "GIT_INTERNAL",
+                "externalUri": "/var/lib/anypoint-vcs-bare/projects/674dba46-0d53-48d6-a390-86b1460bbd0a/raml/AK-Omnichannel/8c5d7315-b691-4519-ac00-3616fd335184",
+                "id": "8c5d7315-b691-4519-ac00-3616fd335184",
+                "name": "AK-Omnichannel",
+                "type": "raml",
+                "environmentId": null,
+                "organizationId": "674dba46-0d53-48d6-a390-86b1460bbd0a",
+                "globalConfigurations": [],
+                "flows": [],
+                "dependencies": [],
+                "enrichers": {},
+                "catalogs": {},
+                "topLevelElements": [],
+                "metadata": null,
+                "deleted": false,
+                "revision": 0,
+                "version": "1.0",
+                "description": null,
+                "createdBy": "amirkhan-ak-mulesoft",
+                "createdDate": "2021-09-22T12:49:27",
+                "lastUpdatedDate": "2021-09-22T12:50:27"
+            },
+            {
+                "vcsStorageType": "GIT_INTERNAL",
+                "externalUri": "/var/lib/anypoint-vcs-bare/projects/674dba46-0d53-48d6-a390-86b1460bbd0a/Mule_Application/Demo/09bc8273-7061-4bc4-8133-e8140146f8d8",
+                "id": "09bc8273-7061-4bc4-8133-e8140146f8d8",
+                "name": "Demo",
+                "type": "Mule Application",
+                "environmentId": null,
+                "organizationId": "674dba46-0d53-48d6-a390-86b1460bbd0a",
+                "globalConfigurations": [],
+                "flows": [],
+                "dependencies": [],
+                "enrichers": {},
+                "catalogs": {},
+                "topLevelElements": [],
+                "metadata": null,
+                "deleted": false,
+                "revision": 0,
+                "version": "1.0",
+                "description": null,
+                "createdBy": "amirkhan-ak-mulesoft",
+                "createdDate": "2021-09-20T08:38:47",
+                "lastUpdatedDate": "2021-09-20T08:45:12"
+            },
+            {
+                ...
+            },
+            {
+                ...
+            },
+            {
+                ...
+            },
+            ...
+            ...
+        ]
+        
+
+In order to retrieve data for "id", I need to use the fetchJson in the following format. Note that in the requesting URL we need to provide the organizationId which has been extracted in the **User Information** sheet before at cell B4, which we will be referring here. Also we will create a Index in order to iterate through the resultset and get all items. The column A will contain the Index. 
+
+    =fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/id")
+    
+    
+Also iferror() function will make sure, errors are handled properly. 
+
+For the remaining attributes, the following formula is used. 
+- Name
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/name"),"")
+        
+- Type
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/type"),"")
+
+- organizationId
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/organizationId"),"")
+
+- createdBy	
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!$D2, A2 & "/createdBy"),"")
+
+- createdDate	
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/createdDate"),"")
+        
+- lastUpdatedDate
+
+        =iferror(fetchJSON(Credentials!A$2 & "/designcenter/api/v1/organizations/" & 'User Information'!B$4 & "/projects",Credentials!D$2, A2 & "/lastUpdatedDate"),"")
+ 
+ As a result the following sheet is automatically populated:
+ 
+ ![image](https://user-images.githubusercontent.com/86777111/137488319-55c4baae-d61c-4a1a-bd7c-56509f0d200b.png)
+
+### Build an Exchange Sheet
+The concept and approach is the same for all the sheets except Runtime / CloudHub, as there additional Headers will be required. Following one example how the Formula will look like for **Exchange** Sheet.
+
+![image](https://user-images.githubusercontent.com/86777111/137488786-b0cdd26f-c06a-4542-a6d2-14cc9bd3608f.png)
+
+### Build a API Manager Sheet
+The concept and approach is the same for all the sheets except Runtime / CloudHub, as there additional Headers will be required. Following one example how the Formula will look like for **API Manager** Sheet.
+
+
+![image](https://user-images.githubusercontent.com/86777111/137489135-d7a3e596-aa5c-4809-8bae-424e578894bb.png)
+
+## fetchJsonWithHeaders
+The fetchJsonWithHeaders formula is used to retrieve the data from CloudHub (Runtime Manager) and the generated token from the fetchToken formula, which has been stored in the Credentialssheet in the cell D2. This will be important to use in all upcoming formulas.
+
+The fetchJsonWithHeaders function uses the following syntax:
+    =fetchJsonWithHeaders(url, token, orgId, envId, xpath)
+    
+**url** represents the Anypoint Platform url of the resource which should be retrieved. This could be "https://anypoint.mulesoft.com/exchange/api/v2/assets" to retrieve all assets from Exchange or "https://anypoint.mulesoft.com/apiplatform/repository/v2/organizations/{organizationId}/users" to retrieve all users from the platform. The url already contains the initial url from fetchToken, so we can use a reference to the Credentials sheet parameter URL. 
+
+**token** represents the authentication token, which has been received after user has been logged into the platform. Also here, we will refer to the token generated from fetchToken formula in the Credentials sheets cell D2. 
+
+**orgId** represents the organizationId for the user
+
+**environmentId** represents the environment for which the request should retrieve data from CloudHub.
+
+**xpath** represents the node which should be extracted into the cell where the formula is used. 
+
+### Build CloudHub / Runtime Manager Sheet.
+The concept of retrieving data is exactly the same as before, the only addition is the orgnizationId and environmentId in the formula as input parameter. Also these parameters have been part of the previous sheets, so these can be easily retrieved from there. 
+
+![image](https://user-images.githubusercontent.com/86777111/137489811-d6031bf5-5d0d-4c80-a618-4c3ea560b2b3.png)
+
+
+# Watch the demo
+Watch the demo, how the final product should be retrieving the information from Anypoint Platform using the Platform APIs. 
+https://www.youtube.com/watch?v=KJ4qgHr8xY4
+
+# License agreement
+By using this repository, you accept that Max the Mule is the coolest integrator on the planet - [Go to biography Max the Mule](https://brand.salesforce.com/content/characters-overview__3?tab=BogXMx2m)
