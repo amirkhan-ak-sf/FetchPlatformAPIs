@@ -175,15 +175,25 @@ Also iferror() function will make sure, errors are handled properly.
 
 For the remaining attributes, the following formula is used. 
 - Name is retrieved with 
+
         =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2, "environments/" & A2 & "/name"), "")
+        
 - organizationId is retrieved with 
+
         =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/organizationId"),"")
+        
 - Production is retrieved with 
+
         =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/isProduction"),"")
+      
 - Type is retrieved with 
+
         =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/type"),"")
+        
 - Client-Id is retrieved with 
+
         =iferror(fetchJSON(Credentials!A2 & "/apimanager/xapi/v1/organizations/" & 'User Information'!B4 & "/environments", Credentials!D2,  "environments/" & A2 & "/clientId"),"")
+        
 
 As a result the following sheet is automatically prepared:
 
