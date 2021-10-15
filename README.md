@@ -119,11 +119,26 @@ In order to retrieve data for "id", I need to use the fetchJson in the following
 In this example the URL is retrieved from the Credentials sheets cell A2 and concatenated with "/account/api/profile" to set the right resource. The "id" is referred to be received from the node. 
 
 For the remaining attributes, the following formula is used. 
-- Firstname is retrieved with =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "firstName")
-- Lastname is retrieved with =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "lastName")
-- organizationId is retrieved with =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "organizationId")
-- email is retrieved with =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "email")
-- phone is retrieved with =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "phoneNumber")
+- Firstname is retrieved with 
+
+        =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "firstName")
+
+- Lastname is retrieved with 
+
+        =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "lastName")
+
+- organizationId is retrieved with 
+
+        =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "organizationId")
+        
+- email is retrieved with 
+
+        =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "email")
+        
+- phone is retrieved with 
+
+        =fetchJSON(Credentials!A2 & "/accounts/api/profile", Credentials!D2, "phoneNumber")
+
 
 Also iferror() function will make sure, errors are handled properly. As a result the following sheet is automatically prepared:
 
