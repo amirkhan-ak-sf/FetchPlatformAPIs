@@ -362,5 +362,9 @@ The concept of retrieving data is exactly the same as before, the only addition 
 Watch the demo, how the final product should be retrieving the information from Anypoint Platform using the Platform APIs. 
 https://www.youtube.com/watch?v=KJ4qgHr8xY4
 
-# License agreement
+## Caution
+This is a contribution to the MuleSoft community by [Amir Khan](https://www.linkedin.com/in/amir-khan-ak). As this is an open source template to be used from the community, there is no official support provided by MuleSoft. 
+
+### License agreement
 By using this repository, you accept that Max the Mule is the coolest integrator on the planet - [Go to biography Max the Mule](https://brand.salesforce.com/content/characters-overview__3?tab=BogXMx2m)
+
